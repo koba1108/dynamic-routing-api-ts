@@ -3,6 +3,12 @@ import { Prisma, PrismaClient } from "@prisma/client"
 import { sqltag } from "@prisma/client/runtime/library"
 import ENV from "../../env"
 
+type TableName = "users" | "contentTypes" | "contentFields"
+
+interface NextVal {
+  nextval: number
+}
+
 @provideSingleton(PrismaProvider)
 class PrismaProvider {
   protected readonly client: PrismaClient = new PrismaClient({
@@ -18,15 +24,27 @@ class PrismaProvider {
     }
   }
 
-  async nextVal(tableName: "users"): Promise<number> {
+  async nextVal(tableName: TableName): Promise<number> {
     const upperTableName = tableName.charAt(0).toUpperCase() + tableName.slice(1)
     const query = `SELECT nextval('${upperTableName}_id_seq')`
-    const [res] = await this.client.$queryRaw<[{ nextval: number }]>(sqltag([query]))
+    const [res] = await this.client.$queryRaw<[NextVal]>(sqltag([query]))
     return res.nextval
+  }
+
+  get $transaction() {
+    return this.client.$transaction
   }
 
   users() {
     return this.client.users
+  }
+
+  contentTypes() {
+    return this.client.contentTypes
+  }
+
+  contentFields() {
+    return this.client.contentFields
   }
 }
 

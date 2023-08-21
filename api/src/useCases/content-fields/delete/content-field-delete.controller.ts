@@ -6,12 +6,13 @@ import {
   response,
 } from "inversify-express-utils"
 import { Response } from "express"
-import { UserDeleteUseCase } from "./user-delete.usecase"
+import { ContentFieldDeleteUsecase } from "./content-field-delete.usecase"
+import { ContentFieldsMiddleware } from "@useCases/content-fields/content-fields.middleware"
 
-@controller("/users")
-class UserDeleteController extends BaseController {
-  constructor(private usecase: UserDeleteUseCase) {
-    super("user-delete-controller")
+@controller("/content-type/:contentTypeId/content-field")
+class ContentFieldDeleteController extends BaseController {
+  constructor(private usecase: ContentFieldDeleteUsecase) {
+    super("content-field-delete-controller")
   }
 
   @httpDelete("/:id")
@@ -27,4 +28,4 @@ class UserDeleteController extends BaseController {
   }
 }
 
-export { UserDeleteController }
+export { ContentFieldDeleteController }

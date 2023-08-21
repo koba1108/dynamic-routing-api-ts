@@ -15,7 +15,7 @@ import { UserUpdateUseCase } from "./user-update.usecase";
 
 @controller("/users")
 class UserUpdateController extends BaseController {
-  constructor(private userUpdateUseCase: UserUpdateUseCase) {
+  constructor(private usecase: UserUpdateUseCase) {
     super("user-update-controller");
   }
 
@@ -25,8 +25,8 @@ class UserUpdateController extends BaseController {
     @requestBody() payload: IUserUpdateRequestDTO,
     @response() res: Response,
   ): Promise<IUserUpdateResponseDTO> {
-    return this.callUseCase(
-      await this.userUpdateUseCase.execute({ ...payload, id: Number(id) }),
+    return this.callUseCaseAsync(
+      this.usecase.execute({ ...payload, id: Number(id) }),
       res,
       StatusCode.OK,
     );

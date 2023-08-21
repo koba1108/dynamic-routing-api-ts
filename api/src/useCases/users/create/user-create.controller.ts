@@ -14,7 +14,7 @@ import { CreateUserUseCase } from "./user-create.usecase";
 
 @controller("/users")
 class UserCreateController extends BaseController {
-  constructor(private createUserUseCase: CreateUserUseCase) {
+  constructor(private usecase: CreateUserUseCase) {
     super("create-user-controller");
   }
 
@@ -23,8 +23,8 @@ class UserCreateController extends BaseController {
     @requestBody() payload: ICreateUserRequestDTO,
     @response() res: Response,
   ): Promise<ICreateUserResponseDTO> {
-    return this.callUseCase(
-      await this.createUserUseCase.execute(payload),
+    return this.callUseCaseAsync(
+      this.usecase.execute(payload),
       res,
       StatusCode.Created,
     );

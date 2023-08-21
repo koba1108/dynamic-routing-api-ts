@@ -3,14 +3,14 @@ import { UserCreateController } from "./create/user-create.controller";
 import { UserDeleteController } from "./delete/user-delete.controller";
 import { UserUpdateController } from "./update/user-update.controller";
 import { UserFindController } from "./find/user-find.controller";
-import { UserFindallController } from "./findall/user-findall.controller";
+import { UserFindAllController } from "@useCases/users/find-all/user-find-all.controller";
 
 const UsersModule = CreateModule([
   UserCreateController,
   UserDeleteController,
   UserUpdateController,
   UserFindController,
-  UserFindallController,
+  UserFindAllController,
 ]);
 
 export { UsersModule };

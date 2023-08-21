@@ -11,7 +11,7 @@ import { UserFindUseCase } from "./user-find.usecase";
 
 @controller("/users")
 class UserFindController extends BaseController {
-  constructor(private userFindUseCase: UserFindUseCase) {
+  constructor(private usecase: UserFindUseCase) {
     super("user-find-controller");
   }
 
@@ -20,8 +20,8 @@ class UserFindController extends BaseController {
     @requestParam("id") id: string,
     @response() res: Response,
   ): Promise<IUserFindResponseDTO> {
-    return this.callUseCase(
-      await this.userFindUseCase.execute({ id: Number(id) }),
+    return this.callUseCaseAsync(
+      this.usecase.execute({ id: Number(id) }),
       res,
       StatusCode.OK,
     );

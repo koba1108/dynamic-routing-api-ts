@@ -15,3 +15,23 @@ model Users {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 }
+
+model ContentTypes {
+  id        Int             @id @default(autoincrement())
+  name      String          @unique
+  fields    ContentFields[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  deletedAt DateTime?
+}
+
+model ContentFields {
+  id            Int          @id @default(autoincrement())
+  name          String
+  type          String
+  contentTypeId Int
+  contentType   ContentTypes @relation(fields: [contentTypeId], references: [id])
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  deletedAt     DateTime?
+}

@@ -6,12 +6,12 @@ import {
   response,
 } from "inversify-express-utils"
 import { Response } from "express"
-import { UserDeleteUseCase } from "./user-delete.usecase"
+import { ContentTypeDeleteUsecase } from "./content-type-delete.usecase"
 
-@controller("/users")
-class UserDeleteController extends BaseController {
-  constructor(private usecase: UserDeleteUseCase) {
-    super("user-delete-controller")
+@controller("/content-type")
+class ContentTypeDeleteController extends BaseController {
+  constructor(private usecase: ContentTypeDeleteUsecase) {
+    super("content-type-delete-controller")
   }
 
   @httpDelete("/:id")
@@ -27,4 +27,4 @@ class UserDeleteController extends BaseController {
   }
 }
 
-export { UserDeleteController }
+export { ContentTypeDeleteController }
