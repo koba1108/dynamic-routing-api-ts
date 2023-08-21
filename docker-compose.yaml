@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  api:
+    container_name: api
+    image: node:18.13.0-alpine3.17
+    volumes:
+      - ./api:/usr/src/api
+    working_dir: /usr/src/api
+    command: sh -c "yarn install && yarn dev"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/mydb
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  db:
+    container_name: postgres
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
