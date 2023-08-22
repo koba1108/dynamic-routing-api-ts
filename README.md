@@ -9,8 +9,6 @@
 
 ### 動的コンテンツ操作用のAPI
 ```
-GET: /api/contents/{contentId}
-POST: /api/contents
-PUT: /api/contents/{contentId}
-DELETE: /api/contents/{contentId}
+// http://localhost:3000/users/1/product/1
+GET: /users/:userId/:contentTypeName/:contentId
 ```

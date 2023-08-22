@@ -8,30 +8,57 @@ datasource db {
 }
 
 model Users {
-  id        Int       @id @default(autoincrement())
-  name      String
-  email     String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id           Int            @id @default(autoincrement())
+  name         String
+  email        String         @unique
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  deletedAt    DateTime?
+  contentTypes ContentTypes[]
 }
 
 model ContentTypes {
   id        Int             @id @default(autoincrement())
   name      String          @unique
+  userId    Int
+  user      Users           @relation(fields: [userId], references: [id])
   fields    ContentFields[]
+  contents  Contents[]
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
   deletedAt DateTime?
 }
 
 model ContentFields {
-  id            Int          @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   name          String
   type          String
   contentTypeId Int
-  contentType   ContentTypes @relation(fields: [contentTypeId], references: [id])
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  contentType   ContentTypes    @relation(fields: [contentTypeId], references: [id])
+  contentValue  ContentValues[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   deletedAt     DateTime?
+}
+
+model Contents {
+  id            Int             @id @default(autoincrement())
+  contentTypeId Int
+  contentType   ContentTypes    @relation(fields: [contentTypeId], references: [id])
+  contentValues ContentValues[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+}
+
+model ContentValues {
+  id        Int           @id @default(autoincrement())
+  contentId Int
+  fieldId   Int
+  value     String
+  content   Contents      @relation(fields: [contentId], references: [id])
+  field     ContentFields @relation(fields: [fieldId], references: [id])
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  deletedAt DateTime?
 }

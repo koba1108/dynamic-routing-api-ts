@@ -1,4 +1,4 @@
-import { ContentField } from "@entities/content-field"
+import { ContentField } from "@entities/content-field.entity"
 
 interface IContentFieldResponseDTO {
   contentField: ContentField

@@ -1,12 +1,15 @@
 import { provide } from "inversify-binding-decorators"
-import { ContentField } from "@entities/content-field"
+import { ContentField } from "@entities/content-field.entity"
+import { User } from "@entities/user.entity"
 import { IEntity } from "./base.entity"
 
 @provide(ContentType)
 class ContentType implements IEntity {
   id: number | undefined
   name!: string
-  fields: ContentField[]
+  userId!: number
+  fields?: ContentField[]
+  user?: User
   createdAt!: Date
   updatedAt!: Date
   deletedAt!: Date | null

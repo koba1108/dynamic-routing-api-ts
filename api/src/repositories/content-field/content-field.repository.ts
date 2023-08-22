@@ -1,6 +1,6 @@
 import { provide } from "inversify-binding-decorators"
 import { BaseRepository } from "@repositories/base-repository"
-import { ContentField } from "@entities/content-field"
+import { ContentField } from "@entities/content-field.entity"
 
 @provide(ContentFieldRepository)
 class ContentFieldRepository extends BaseRepository<ContentField> {
@@ -89,6 +89,11 @@ class ContentFieldRepository extends BaseRepository<ContentField> {
 
   async existsById(id: number): Promise<boolean> {
     const res = await this.db.count({ where: { id } })
+    return res > 0
+  }
+
+  async existsByIds(id: number, contentTypeId: number): Promise<boolean> {
+    const res = await this.db.count({ where: { id, contentTypeId } })
     return res > 0
   }
 

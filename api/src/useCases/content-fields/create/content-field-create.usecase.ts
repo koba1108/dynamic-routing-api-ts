@@ -1,7 +1,7 @@
 import { Report, StatusCode } from "@expressots/core"
 import { provide } from "inversify-binding-decorators"
 import { ContentFieldRepository } from "@repositories/content-field/content-field.repository"
-import { ContentField } from "@entities/content-field"
+import { ContentField } from "@entities/content-field.entity"
 import { ContentTypeRepository } from "@repositories/content-type/content-type.repository"
 import {
   IContentFieldCreateResponseDTO,

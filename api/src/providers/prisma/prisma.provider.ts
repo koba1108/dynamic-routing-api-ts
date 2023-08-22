@@ -3,7 +3,12 @@ import { Prisma, PrismaClient } from "@prisma/client"
 import { sqltag } from "@prisma/client/runtime/library"
 import ENV from "../../env"
 
-type TableName = "users" | "contentTypes" | "contentFields"
+type TableName =
+  | "users"
+  | "contentTypes"
+  | "contentFields"
+  | "contents"
+  | "contentValues"
 
 interface NextVal {
   nextval: number
@@ -40,12 +45,20 @@ class PrismaProvider {
     return this.client.users
   }
 
+  contents() {
+    return this.client.contents
+  }
+
   contentTypes() {
     return this.client.contentTypes
   }
 
   contentFields() {
     return this.client.contentFields
+  }
+
+  contentValues() {
+    return this.client.contentValues
   }
 }
 
