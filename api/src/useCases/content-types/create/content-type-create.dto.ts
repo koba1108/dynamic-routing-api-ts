@@ -1,15 +1,15 @@
 import { ContentType } from "@entities/content-type"
 
 interface IContentTypeCreateRequestDTO {
-  name: string;
+  name: string
   fields: {
-    name: string,
-    type: string,
-  }[];
+    name: string
+    type: string
+  }[]
 }
 
 interface IContentTypeCreateResponseDTO {
-  contentType: ContentType;
+  contentType: ContentType
 }
 
-export { IContentTypeCreateRequestDTO, IContentTypeCreateResponseDTO };
+export { IContentTypeCreateRequestDTO, IContentTypeCreateResponseDTO }

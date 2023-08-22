@@ -4,8 +4,7 @@ import { provide } from "inversify-binding-decorators"
 
 @provide(UserDeleteUseCase)
 class UserDeleteUseCase {
-  constructor(private userRepository: UserRepository) {
-  }
+  constructor(private userRepository: UserRepository) {}
 
   async execute(id: number): Promise<void> {
     const exists = await this.userRepository.existsById(id)

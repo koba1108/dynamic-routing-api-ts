@@ -1,21 +1,21 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController, StatusCode } from "@expressots/core"
 import {
   controller,
   httpPost,
   requestBody,
   response,
-} from "inversify-express-utils";
-import { Response } from "express";
+} from "inversify-express-utils"
+import { Response } from "express"
 import {
   ICreateUserRequestDTO,
   ICreateUserResponseDTO,
-} from "./user-create.dto";
-import { CreateUserUseCase } from "./user-create.usecase";
+} from "./user-create.dto"
+import { CreateUserUseCase } from "./user-create.usecase"
 
 @controller("/users")
 class UserCreateController extends BaseController {
   constructor(private usecase: CreateUserUseCase) {
-    super("create-user-controller");
+    super("create-user-controller")
   }
 
   @httpPost("/")
@@ -27,8 +27,8 @@ class UserCreateController extends BaseController {
       this.usecase.execute(payload),
       res,
       StatusCode.Created,
-    );
+    )
   }
 }
 
-export { UserCreateController };
+export { UserCreateController }

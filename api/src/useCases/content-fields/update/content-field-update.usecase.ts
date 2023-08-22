@@ -1,34 +1,51 @@
-import { provide } from "inversify-binding-decorators";
+import { provide } from "inversify-binding-decorators"
+import { ContentFieldRepository } from "@repositories/content-field/content-field.repository"
+import { Report, StatusCode } from "@expressots/core"
+import { ContentTypeRepository } from "@repositories/content-type/content-type.repository"
 import {
   IContentFieldUpdateResponseDTO,
   IContentFieldUpdateRequestDTO,
-} from "./content-field-update.dto";
-import { ContentFieldRepository } from "@repositories/content-field/content-field.repository"
-import { Report, StatusCode } from "@expressots/core"
+} from "./content-field-update.dto"
 
 @provide(ContentFieldUpdateUsecase)
 class ContentFieldUpdateUsecase {
   constructor(
+    private contentTypeRepository: ContentTypeRepository,
     private contentFieldRepository: ContentFieldRepository,
-  ) {
-  }
+  ) {}
 
-  async execute(payload: IContentFieldUpdateRequestDTO): Promise<IContentFieldUpdateResponseDTO | null> {
-    const _contentField = await this.contentFieldRepository.findById(payload.id);
-    if (!_contentField || _contentField.contentTypeId !== payload.contentTypeId) {
+  async execute(
+    payload: IContentFieldUpdateRequestDTO,
+  ): Promise<IContentFieldUpdateResponseDTO | null> {
+    const exists = await this.contentTypeRepository.existsById(
+      payload.contentTypeId,
+    )
+    if (!exists) {
+      Report.Error(
+        "ContentType not found",
+        StatusCode.BadRequest,
+        "content-field-update-usecase",
+      )
+      return null
+    }
+    const cf = await this.contentFieldRepository.findById(payload.id)
+    if (!cf || cf.contentTypeId !== payload.contentTypeId) {
       Report.Error(
         "ContentField not found",
         StatusCode.BadRequest,
         "content-field-update-usecase",
-      );
-      return null;
+      )
+      return null
     }
     if (payload.name) {
-      _contentField.name = payload.name;
+      cf.name = payload.name
     }
-    const contentField = await this.contentFieldRepository.update(payload.id, _contentField);
-    return { contentField };
+    const contentField = await this.contentFieldRepository.update(
+      payload.id,
+      cf,
+    )
+    return { contentField }
   }
 }
 
-export { ContentFieldUpdateUsecase };
+export { ContentFieldUpdateUsecase }

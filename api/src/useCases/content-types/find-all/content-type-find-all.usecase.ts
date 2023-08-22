@@ -1,11 +1,10 @@
 import { provide } from "inversify-binding-decorators"
-import { IContentTypeFindAllDto } from "./content-type-find-all.dto"
 import { ContentTypeRepository } from "@repositories/content-type/content-type.repository"
+import { IContentTypeFindAllDto } from "./content-type-find-all.dto"
 
 @provide(ContentTypeFindAllUsecase)
 class ContentTypeFindAllUsecase {
-  constructor(private contentTypeRepository: ContentTypeRepository) {
-  }
+  constructor(private contentTypeRepository: ContentTypeRepository) {}
 
   async execute(): Promise<IContentTypeFindAllDto> {
     try {

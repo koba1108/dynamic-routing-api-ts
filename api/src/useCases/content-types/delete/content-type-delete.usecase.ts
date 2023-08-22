@@ -4,8 +4,7 @@ import { ContentTypeRepository } from "@repositories/content-type/content-type.r
 
 @provide(ContentTypeDeleteUsecase)
 class ContentTypeDeleteUsecase {
-  constructor(private contentTypeRepository: ContentTypeRepository) {
-  }
+  constructor(private contentTypeRepository: ContentTypeRepository) {}
 
   async execute(id: number): Promise<void> {
     const exists = await this.contentTypeRepository.existsById(id)

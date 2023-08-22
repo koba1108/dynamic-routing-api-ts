@@ -25,7 +25,8 @@ class PrismaProvider {
   }
 
   async nextVal(tableName: TableName): Promise<number> {
-    const upperTableName = tableName.charAt(0).toUpperCase() + tableName.slice(1)
+    const upperTableName =
+      tableName.charAt(0).toUpperCase() + tableName.slice(1)
     const query = `SELECT nextval('${upperTableName}_id_seq')`
     const [res] = await this.client.$queryRaw<[NextVal]>(sqltag([query]))
     return res.nextval

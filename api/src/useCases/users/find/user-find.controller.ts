@@ -1,18 +1,18 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController, StatusCode } from "@expressots/core"
 import {
   controller,
   httpGet,
   requestParam,
   response,
-} from "inversify-express-utils";
-import { Response } from "express";
-import { IUserFindRequestDTO, IUserFindResponseDTO } from "./user-find.dto";
-import { UserFindUseCase } from "./user-find.usecase";
+} from "inversify-express-utils"
+import { Response } from "express"
+import { IUserFindResponseDTO } from "./user-find.dto"
+import { UserFindUseCase } from "./user-find.usecase"
 
 @controller("/users")
 class UserFindController extends BaseController {
   constructor(private usecase: UserFindUseCase) {
-    super("user-find-controller");
+    super("user-find-controller")
   }
 
   @httpGet("/:id")
@@ -24,8 +24,8 @@ class UserFindController extends BaseController {
       this.usecase.execute({ id: Number(id) }),
       res,
       StatusCode.OK,
-    );
+    )
   }
 }
 
-export { UserFindController };
+export { UserFindController }

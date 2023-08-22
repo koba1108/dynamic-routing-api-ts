@@ -9,10 +9,11 @@ import {
 
 @provide(CreateUserUseCase)
 class CreateUserUseCase {
-  constructor(private userRepository: UserRepository) {
-  }
+  constructor(private userRepository: UserRepository) {}
 
-  async execute(payload: ICreateUserRequestDTO): Promise<ICreateUserResponseDTO | null> {
+  async execute(
+    payload: ICreateUserRequestDTO,
+  ): Promise<ICreateUserResponseDTO | null> {
     const exist = await this.userRepository.existsByEmail(payload.email)
     if (exist) {
       Report.Error(

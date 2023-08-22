@@ -1,7 +1,7 @@
-import cors from 'cors'
+import cors from "cors"
 
 const options = {
-  origin: '*',
+  origin: "*",
 }
 
 export const corsMiddleware = cors(options)

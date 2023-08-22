@@ -1,6 +1,6 @@
 import { Redis } from "ioredis"
-import ENV from "../../env"
 import { provideSingleton } from "@expressots/core"
+import ENV from "../../env"
 
 @provideSingleton(RedisProvider)
 class RedisProvider {

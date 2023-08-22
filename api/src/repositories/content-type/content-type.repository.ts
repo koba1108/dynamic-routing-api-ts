@@ -45,7 +45,7 @@ class ContentTypeRepository extends BaseRepository<ContentType> {
   delete(id: number): Promise<ContentType> {
     return this.db.delete({
       where: {
-        id
+        id,
       },
       include: { fields: true },
     })

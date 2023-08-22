@@ -1,13 +1,21 @@
-import { ContentField } from "@entities/content-field"
+import { ContentType } from "@entities/content-type"
+
+interface IContentFieldParams {
+  name: string
+  type: string
+}
 
 interface IContentFieldCreateRequestDTO {
-  contentTypeId: number,
-  name: string,
-  type: string,
+  contentTypeId: number
+  fields: IContentFieldParams[]
 }
 
 interface IContentFieldCreateResponseDTO {
-  contentField: ContentField;
+  contentType: ContentType
 }
 
-export { IContentFieldCreateRequestDTO, IContentFieldCreateResponseDTO }
+export {
+  IContentFieldParams,
+  IContentFieldCreateRequestDTO,
+  IContentFieldCreateResponseDTO,
+}

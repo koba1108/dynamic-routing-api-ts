@@ -25,6 +25,19 @@ class ContentFieldRepository extends BaseRepository<ContentField> {
     })
   }
 
+  createMany(cfs: ContentField[]): Promise<{ count: number }> {
+    return this.db.createMany({
+      data: cfs.map((cf) => ({
+        name: cf.name,
+        type: cf.type,
+        contentTypeId: cf.contentTypeId,
+        createdAt: cf.createdAt,
+        updatedAt: cf.updatedAt,
+      })),
+      skipDuplicates: true,
+    })
+  }
+
   update(id: number, cf: ContentField): Promise<ContentField> {
     return this.db.update({
       where: { id },
@@ -69,7 +82,7 @@ class ContentFieldRepository extends BaseRepository<ContentField> {
       where: {
         name,
         contentTypeId,
-      }
+      },
     })
     return res > 0
   }

@@ -1,10 +1,10 @@
 import { inject } from "inversify"
 import { provide } from "inversify-binding-decorators"
-import { IBaseRepository } from "./base-repository.interface"
 import { IEntity } from "@entities/base.entity"
 import { PrismaProvider } from "@providers/prisma/prisma.provider"
 import { RedisProvider } from "@providers/redis/redis.provider"
 import { redisCacheMiddleware } from "@providers/prisma/prisma.middleware"
+import { IBaseRepository } from "./base-repository.interface"
 
 @provide(BaseRepository)
 class BaseRepository<T extends IEntity> implements IBaseRepository<T> {

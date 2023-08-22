@@ -1,11 +1,11 @@
-import { User } from "@entities/user.entity";
+import { User } from "@entities/user.entity"
 
 interface IUserFindRequestDTO {
-  id: number;
+  id: number
 }
 
 interface IUserFindResponseDTO {
-  user: User;
+  user: User
 }
 
-export { IUserFindRequestDTO, IUserFindResponseDTO };
+export { IUserFindRequestDTO, IUserFindResponseDTO }

@@ -1,6 +1,6 @@
 import { provide } from "inversify-binding-decorators"
-import { IEntity } from "./base.entity"
 import { ContentField } from "@entities/content-field"
+import { IEntity } from "./base.entity"
 
 @provide(ContentType)
 class ContentType implements IEntity {

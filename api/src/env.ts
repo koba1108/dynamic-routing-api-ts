@@ -1,4 +1,4 @@
-import pkg from "../package.json";
+import pkg from "../package.json"
 
 const ENV = {
   Application: {
@@ -19,6 +19,6 @@ const ENV = {
     REDIS_HOST: process.env.REDIS_HOST as string,
     REDIS_PORT: Number(process.env.REDIS_PORT),
   },
-};
+}
 
-export default ENV;
+export default ENV

@@ -7,9 +7,7 @@ import ENV from "./env"
 import { corsMiddleware } from "./middlewares/cors/cors.middleware"
 
 async function bootstrap() {
-  const app = App.create(container, [
-    corsMiddleware,
-  ])
+  const app = App.create(container, [corsMiddleware])
   return app.listen(
     ENV.Application.PORT,
     ServerEnvironment[ENV.Application.ENVIRONMENT],

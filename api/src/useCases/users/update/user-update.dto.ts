@@ -1,13 +1,13 @@
-import { User } from "@entities/user.entity";
+import { User } from "@entities/user.entity"
 
 interface IUserUpdateRequestDTO {
-  id: number;
-  name?: string;
-  email: string;
+  id: number
+  name?: string
+  email: string
 }
 
 interface IUserUpdateResponseDTO {
-  user: User;
+  user: User
 }
 
-export { IUserUpdateRequestDTO, IUserUpdateResponseDTO };
+export { IUserUpdateRequestDTO, IUserUpdateResponseDTO }

@@ -1,22 +1,22 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController, StatusCode } from "@expressots/core"
 import {
   controller,
   httpPost,
-  requestBody, requestParam,
+  requestBody,
+  requestParam,
   response,
 } from "inversify-express-utils"
-import { Response } from "express";
+import { Response } from "express"
 import {
   IContentFieldCreateRequestDTO,
   IContentFieldCreateResponseDTO,
-} from "./content-field-create.dto";
-import { ContentFieldCreateUsecase } from "./content-field-create.usecase";
-import { ContentFieldsMiddleware } from "@useCases/content-fields/content-fields.middleware"
+} from "./content-field-create.dto"
+import { ContentFieldCreateUsecase } from "./content-field-create.usecase"
 
 @controller("/content-type/:contentTypeId/content-field")
 class ContentFieldCreateController extends BaseController {
   constructor(private usecase: ContentFieldCreateUsecase) {
-    super("create-content-field-controller");
+    super("create-content-field-controller")
   }
 
   @httpPost("/")
@@ -32,8 +32,8 @@ class ContentFieldCreateController extends BaseController {
       }),
       res,
       StatusCode.Created,
-    );
+    )
   }
 }
 
-export { ContentFieldCreateController };
+export { ContentFieldCreateController }

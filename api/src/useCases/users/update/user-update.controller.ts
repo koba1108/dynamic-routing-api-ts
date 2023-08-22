@@ -1,4 +1,4 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController, StatusCode } from "@expressots/core"
 import {
   controller,
   httpPut,
@@ -6,17 +6,17 @@ import {
   requestParam,
   response,
 } from "inversify-express-utils"
-import { Response } from "express";
+import { Response } from "express"
 import {
   IUserUpdateRequestDTO,
   IUserUpdateResponseDTO,
-} from "./user-update.dto";
-import { UserUpdateUseCase } from "./user-update.usecase";
+} from "./user-update.dto"
+import { UserUpdateUseCase } from "./user-update.usecase"
 
 @controller("/users")
 class UserUpdateController extends BaseController {
   constructor(private usecase: UserUpdateUseCase) {
-    super("user-update-controller");
+    super("user-update-controller")
   }
 
   @httpPut("/:id")
@@ -29,8 +29,8 @@ class UserUpdateController extends BaseController {
       this.usecase.execute({ ...payload, id: Number(id) }),
       res,
       StatusCode.OK,
-    );
+    )
   }
 }
 
-export { UserUpdateController };
+export { UserUpdateController }

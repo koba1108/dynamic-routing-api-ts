@@ -4,8 +4,7 @@ import { IFindAllUserResponseDTO } from "./user-find-all.dto"
 
 @provide(FindAllUserUseCase)
 class FindAllUserUseCase {
-  constructor(private userRepository: UserRepository) {
-  }
+  constructor(private userRepository: UserRepository) {}
 
   async execute(): Promise<IFindAllUserResponseDTO> {
     try {

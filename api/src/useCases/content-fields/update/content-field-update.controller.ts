@@ -1,4 +1,4 @@
-import { BaseController, StatusCode } from "@expressots/core";
+import { BaseController, StatusCode } from "@expressots/core"
 import {
   controller,
   httpPut,
@@ -6,18 +6,17 @@ import {
   requestParam,
   response,
 } from "inversify-express-utils"
-import { Response } from "express";
+import { Response } from "express"
 import {
   IContentFieldUpdateRequestDTO,
   IContentFieldUpdateResponseDTO,
-} from "./content-field-update.dto";
-import { ContentFieldUpdateUsecase } from "./content-field-update.usecase";
-import { ContentFieldsMiddleware } from "@useCases/content-fields/content-fields.middleware"
+} from "./content-field-update.dto"
+import { ContentFieldUpdateUsecase } from "./content-field-update.usecase"
 
 @controller("/content-type/:contentTypeId/content-field")
 class ContentFieldUpdateController extends BaseController {
   constructor(private usecase: ContentFieldUpdateUsecase) {
-    super("content-field-update-controller");
+    super("content-field-update-controller")
   }
 
   @httpPut("/:id")
@@ -35,8 +34,8 @@ class ContentFieldUpdateController extends BaseController {
       }),
       res,
       StatusCode.OK,
-    );
+    )
   }
 }
 
-export { ContentFieldUpdateController };
+export { ContentFieldUpdateController }

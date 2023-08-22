@@ -1,6 +1,9 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint/eslint-plugin'],
+    plugins: [
+      '@typescript-eslint/eslint-plugin',
+      'import',
+    ],
     extends: [
       'plugin:@typescript-eslint/recommended',
       'plugin:prettier/recommended',
@@ -12,6 +15,7 @@ module.exports = {
     },
     ignorePatterns: ['.eslintrc.js'],
     rules: {
+      'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',

@@ -1,12 +1,11 @@
 import { provide } from "inversify-binding-decorators"
-import { IContentTypeResponseDTO } from "./content-type-find.dto"
 import { Report, StatusCode } from "@expressots/core"
 import { ContentTypeRepository } from "@repositories/content-type/content-type.repository"
+import { IContentTypeResponseDTO } from "./content-type-find.dto"
 
 @provide(ContentTypeFindUsecase)
 class ContentTypeFindUsecase {
-  constructor(private contentTypeRepository: ContentTypeRepository) {
-  }
+  constructor(private contentTypeRepository: ContentTypeRepository) {}
 
   async execute(id: number): Promise<IContentTypeResponseDTO | null> {
     const contentType = await this.contentTypeRepository.findById(id)
